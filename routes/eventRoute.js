@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const modelEvent = require('../models/eventModel'); // Importar el modelo de libros
 
+
 // Obtener todos los Eventos (GET)
-router.get('/events', async (req, res) => {
+router.get('/api/events', async (req, res) => {
     try {
         const eventos = await modelEvent.find(); // Obtener todos los libros
         res.status(200).send(eventos);
