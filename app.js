@@ -7,7 +7,7 @@ const cors = require ('cors')
 
 //----------------------------------VerCel - Documentations -------------------------------------------------
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+//app.get("/", (req, res) => res.send("Express on Vercel"));
 
 
 
