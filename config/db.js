@@ -1,9 +1,10 @@
 const mongoose = require ('mongoose');
+const dotenv = require('dotenv');
 
 //Función para conectar a MongoDB
 const dbconnect = async() => {
     try {
-        await mongoose.connect ('mongodb://127.0.0.1:27017/ApiGE');
+        await mongoose.connect (process.env.MONGODB_URI);
         console.log ('conexión a la base de datos establecida');
     } catch (error) {
         console.error ('Error al intentar conectar con la base de datos: ', error);

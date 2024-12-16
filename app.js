@@ -4,6 +4,9 @@ const dbconnect = require('./config/db');
 const eventosRoutes = require('./routes/eventRoute');
 const port = process.env.PORT || 4000
 const cors = require ('cors')
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 //----------------------------------VerCel - Documentations -------------------------------------------------
 
@@ -19,7 +22,7 @@ app.use(eventosRoutes);
 
 dbconnect().then(() => {
     app.listen(port, () => {
-        console.log(`El servidor está corriendo en el puerto' ${port}` );
+        console.log(`El servidor está corriendo en el puerto ${port}` );
     });
 
 }).catch(err => {
