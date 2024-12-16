@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const dbconnect = require('./config/db');
 const eventosRoutes = require('./routes/eventRoute');
-const port = 4000
+const port = process.env.PORT || 4000
 const cors = require ('cors')
 
 //----------------------------------VerCel - Documentations -------------------------------------------------
