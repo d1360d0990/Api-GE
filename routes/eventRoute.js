@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const modelEvent = require('../models/eventModel'); // Importar el modelo de libros
+const modelEvent = require('../models/eventModel'); // Importar el modelo de eventos
 
 
 // Obtener todos los Eventos (GET)
 router.get('/events', async (req, res) => {
     try {
-        const eventos = await modelEvent.find(); // Obtener todos los libros
+        const eventos = await modelEvent.find(); // Obtener todos los eventos
         res.status(200).json(eventos);
     } catch (error) {
         res.status(500).json({ mensaje: 'Error al obtener los eventos', error });
@@ -16,9 +16,9 @@ router.get('/events', async (req, res) => {
 // Obtener un evento por ID (GET)
 router.get('/eventos/:id', async (req, res) => {
     try {
-        const libro = await modelEvento.findById(req.params.id); // Buscar libro por ID
-        if (!libro) {
-            return res.status(404).json({ mensaje: 'Libro no encontrado' });
+        const eventos = await modelEvent.findById(req.params.id); // Buscar evento por ID
+        if (!eventos) {
+            return res.status(404).json({ mensaje: 'evento no encontrado' });
         }
         res.status(200).json(eventos);
     } catch (error) {
@@ -26,7 +26,7 @@ router.get('/eventos/:id', async (req, res) => {
     }
 });
 
-// Crear un nuevo libro (POST)
+// Crear un nuevo evento (POST)
 router.post('/addEvent', async (req, res) => {
     const body = req.body;
     try {
@@ -37,7 +37,7 @@ router.post('/addEvent', async (req, res) => {
     }
 });
 
-// Actualizar un libro por ID (PUT)
+// Actualizar un evento por ID (PUT)
 router.put('/eventos/:id', async (req, res) => {
     try {
         const eventoActualizado = await modelEvent.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -53,7 +53,7 @@ router.put('/eventos/:id', async (req, res) => {
 // Eliminar un evento por ID (DELETE)
 router.delete('/eventos/:id', async (req, res) => {
     try {
-        const eventoEliminado = await modelEvent.findByIdAndDelete(req.params.id); // Eliminar libro por ID
+        const eventoEliminado = await modelEvent.findByIdAndDelete(req.params.id); // Eliminar evento por ID
         if (!eventoEliminado) {
             return res.status(404).json({ mensaje: 'Evento no encontrado' });
         }
@@ -64,27 +64,26 @@ router.delete('/eventos/:id', async (req, res) => {
 });
 
 //--------------------------------------EndPoint----------------------------------------------------
-//Obetener libros segun los filtros de busqueda
-router.get ('/eventos/negocio/busqueda', async (req,res)=>{
-    const {autor, categoria, estado} = req.query; //obtenes autor, categoria y estado desde la query
+//Obetener eventos segun los filtros de busqueda
+// Obtener eventos según los filtros de búsqueda
+router.get('/eventos/negocio/busqueda', async (req, res) => {
+    const { evento, asistente, ubicacion } = req.query;
+    try {
+        const query = {}; // Creamos un objeto vacío para almacenar los filtros
+        if (evento) query.evento = evento;
+        if (asistente) query.asistente = asistente;
+        if (ubicacion) query.ubicacion = ubicacion;
 
-    try{
-        const query = {};// creamos un objeto vacio para almacenar los filtros
-        if(evento) query.evento = evento; //si el autor esta en los query params, lo va a agregar al filtro
-        if(asistente) query.asistente = asistente;//si la categoria esta en los query params, lo va a agregar al filtro
-        if(ubicacion) query.ubicacion = ubicacion;//si el estado esta en los query params, lo va a agregar al filtro
+        const eventos = await modelEvent.find(query); // Almacena los resultados de la búsqueda en 'eventos'
 
-        const evento = await modelEvent.find (query);
-
-        if(!evento.length){
-            return res.status (404).json({mensaje: 'No se encontraron eventos con los fliltros proporcionados'});
+        if (!eventos.length) {
+            return res.status(404).json({ mensaje: 'No se encontraron eventos con los filtros proporcionados' });
         }
-        res.status (200).json(eventos);
-
-
-    }catch (error){
-        res.status (500).json ({mensaje: 'Error al obtener los eventos', error})
+        res.status(200).json(eventos); // Devuelve los resultados correctos
+    } catch (error) {
+        res.status(500).json({ mensaje: 'Error al obtener los eventos', error });
     }
-})
+});
+
 
 module.exports = router;
