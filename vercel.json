@@ -11,5 +11,7 @@
       "src": "/(.*)",
       "dest": "index.js"
     }
-  ]
+  ],
+  "env": { "MONGODB_URI": "mongodb://127.0.0.1:27017/ApiGE",
+  "PORT": "4000"
 }
