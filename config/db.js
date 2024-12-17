@@ -8,7 +8,7 @@ const dbconnect = async() => {
         console.log ('conexión a la base de datos establecida');
     } catch (error) {
         console.error ('Error al intentar conectar con la base de datos: ', error);
-        process.exit (1); //detemos el proceso si hay un error grave en la conexión
+        process.exit (1); //detenemos el proceso si hay un error grave en la conexión
     }
 }
 

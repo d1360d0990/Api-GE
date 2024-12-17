@@ -6,7 +6,7 @@ const modelEvent = require('../models/eventModel'); // Importar el modelo de eve
 // Obtener todos los Eventos (GET)
 router.get('/events', async (req, res) => {
     try {
-        const eventos = await modelEvent.find(); // Obtener todos los eventos
+        const eventos = await modelEvent.find().limit(100); // Obtener todos los eventos
         res.status(200).json(eventos);
     } catch (error) {
         res.status(500).json({ mensaje: 'Error al obtener los eventos', error });
@@ -14,7 +14,7 @@ router.get('/events', async (req, res) => {
 });
 
 // Obtener un evento por ID (GET)
-router.get('/eventos/:id', async (req, res) => {
+router.get('/events/:id', async (req, res) => {
     try {
         const eventos = await modelEvent.findById(req.params.id); // Buscar evento por ID
         if (!eventos) {
@@ -38,7 +38,7 @@ router.post('/addEvent', async (req, res) => {
 });
 
 // Actualizar un evento por ID (PUT)
-router.put('/eventos/:id', async (req, res) => {
+router.put('/events/:id', async (req, res) => {
     try {
         const eventoActualizado = await modelEvent.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!eventoActualizado) {
