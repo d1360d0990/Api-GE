@@ -2,17 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.js",
+      "src": "app.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "index.js"
+      "dest": "app.js"
     }
-  ],
-  "env": { "MONGODB_URI": "mongodb://127.0.0.1:27017/ApiGE",
-  "PORT": "4000"
-}
+  ]
 }
