@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const validarFecha = require('../middlewares/validarFecha.js');
 const modelEvent = require('../models/eventModel'); // Importar el modelo de eventos
 
 
