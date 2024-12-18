@@ -6,6 +6,8 @@ const dbconnect = require('./config/db');
 const eventosRoutes = require('./routes/eventRoute');
 const cors = require ('cors')
 const dotenv = require('dotenv');
+const corsOptions = require('./config/corsOptions');
+
 
 dotenv.config();
 
