@@ -8,9 +8,9 @@ const eventSchema = new mongoose.Schema({
     participantes: [{ nombre: String, email: String }],
     capacidadMaxima: { type: Number },
     entradasDisponibles: { type: Number }
-},//Configuraciones adicionales
+},
     {
-        timestamps: true, //fecha de creacion y modificación como columna
+        timestamps: true,
     }
 );
 

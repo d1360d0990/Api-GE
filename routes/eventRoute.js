@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const validarFecha = require('../middlewares/validarFecha.js');
 const modelEvent = require('../models/eventModel'); // Importar el modelo de eventos
 
 
@@ -66,14 +65,15 @@ router.delete('/eventos/:id', async (req, res) => {
 
 //--------------------------------------EndPoint----------------------------------------------------
 //Obetener eventos segun los filtros de busqueda
-// Obtener eventos según los filtros de búsqueda
 router.get('/eventos/negocio/busqueda', async (req, res) => {
     const { evento, asistente, ubicacion } = req.query;
     try {
         const query = {}; // Creamos un objeto vacío para almacenar los filtros
-        if (evento) query.evento = evento;
-        if (asistente) query.asistente = asistente;
-        if (ubicacion) query.ubicacion = ubicacion;
+        if (nombre) query.nombe = nombre;
+        if (descripcion) query.descripcion = descricion;
+        if (fecha) query.fecha = fecha;
+        if (capacidad) query.capacidad = capacidad;
+        if (entradas) query.entradas = entradas;
 
         const eventos = await modelEvent.find(query); // Almacena los resultados de la búsqueda en 'eventos'
 

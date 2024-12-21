@@ -1,7 +1,7 @@
 //config/corsConfig.js
 
 const corsOptions = {
-    origin: ['http://localhost:5000' ],
+    origin: ['*' ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 

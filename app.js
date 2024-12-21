@@ -11,15 +11,8 @@ const corsOptions = require('./config/corsOptions');
 
 dotenv.config();
 
-//----------------------------------VerCel - Documentations -------------------------------------------------
-
-app.get("/", (req, res) => res.send("Express on Vercel"));
-
-
-
 // Configurar CORS
-app.use(cors(corsOptions)); // Permitir CORS para todos los orígenes
-
+app.use(cors(corsOptions)); 
 app.use(express.json()); //Middlewar para parsear JSON
 app.use("/api",eventosRoutes); 
 
