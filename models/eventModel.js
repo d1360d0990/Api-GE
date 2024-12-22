@@ -7,7 +7,7 @@ const eventSchema = new mongoose.Schema({
     lugar: { type: String },
     participantes: [{ nombre: String, email: String }],
     capacidadMaxima: { type: Number },
-    entradasDisponibles: { type: Number }
+    tickets: { type: Number }
 },
     {
         timestamps: true,

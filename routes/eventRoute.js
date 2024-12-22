@@ -13,16 +13,6 @@ router.get('/events', async (req, res) => {
     }
 });
 
-// Obtener todos los Eventos en la home (GET)
-router.get('/home', async (req, res) => {
-    try {
-        const eventos = await modelEvent.find().limit(100); // Obtener todos los eventos
-        res.status(200).json(eventos);
-    } catch (error) {
-        res.status(500).json({ mensaje: 'Error al obtener los eventos', error });
-    }
-});
-
 // Obtener un evento por ID (GET)
 router.get('/events/:id', async (req, res) => {
     try {
