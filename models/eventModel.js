@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const eventSchema = new mongoose.Schema({
     nombre: { type: String, required: true },
     descripcion: { type: String },
-    fecha: { type: Date, required: true },
+    fecha: { type: Date },
     lugar: { type: String },
     participantes: [{ nombre: String, email: String }],
     capacidadMaxima: { type: Number },
