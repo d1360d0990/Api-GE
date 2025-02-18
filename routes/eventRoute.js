@@ -29,10 +29,12 @@ router.get('/events/:id', async (req, res) => {
 // Crear un nuevo evento (POST)
 router.post('/addEvent', async (req, res) => {
     const body = req.body;
+    console.log('req.body:', body);
     try {
         const nuevoEvento = await modelEvent.create(body); // Insertar en la base de datos
         res.status(201).json(nuevoEvento); // 201 indica que se ha creado un recurso
     } catch (error) {
+        console.log('error:', error);
         res.status(400).json(error); // Manejar errores
     }
 });
